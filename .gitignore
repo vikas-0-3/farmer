@@ -1,0 +1,39 @@
+# -----------------------
+# Node.js (Farm-Backend)
+# -----------------------
+node_modules/
+.env
+.nyc_output/
+coverage/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# -----------------------
+# Flutter (Farm-Frontend/cow_and_crop)
+# -----------------------
+# Flutter build outputs and generated files
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+ios/Pods/
+android/app/build/
+pubspec.lock
+
+# -----------------------
+# IDE/Editor files
+# -----------------------
+*.iml
+.idea/
+*.ipr
+*.iws
+.vscode/
+
+# macOS
+.DS_Store
