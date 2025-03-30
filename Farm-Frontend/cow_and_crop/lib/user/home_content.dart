@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:cow_and_crop/constants.dart';
+import 'package:cow_and_crop/user/BuyNowDialog.dart';
+import 'package:cow_and_crop/user/add_to_cart_dialog.dart';
 
 class HomeContent extends StatefulWidget {
   final VoidCallback? onViewAll;
@@ -104,27 +106,7 @@ class _HomeContentState extends State<HomeContent> {
 
               // "Add to Cart" button (opens respective popup)
               ElevatedButton.icon(
-                onPressed: () {
-                  // Open the AddToCartDialog (assume it's defined elsewhere)
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      // Replace with your actual AddToCartDialog widget
-                      return AlertDialog(
-                        title: Text("Add to Cart: ${product["productName"]}"),
-                        content: const Text(
-                          "Implement Add to Cart functionality here.",
-                        ),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.of(context).pop(),
-                            child: const Text("Close"),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
+                onPressed: () => _addToCart(product),
                 icon: const Icon(Icons.add_shopping_cart, size: 14),
                 label: const Text(
                   "Add to Cart",
@@ -139,27 +121,7 @@ class _HomeContentState extends State<HomeContent> {
 
               // "Buy Now" button (opens respective popup)
               ElevatedButton.icon(
-                onPressed: () {
-                  // Open the BuyNowDialog (assume it's defined elsewhere)
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      // Replace with your actual BuyNowDialog widget
-                      return AlertDialog(
-                        title: Text("Buy Now: ${product["productName"]}"),
-                        content: const Text(
-                          "Implement Buy Now functionality here.",
-                        ),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.of(context).pop(),
-                            child: const Text("Close"),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
+                onPressed: () => _buyNow(product),
                 icon: const Icon(Icons.shopping_bag, size: 14),
                 label: const Text("Buy Now", style: TextStyle(fontSize: 12)),
                 style: ElevatedButton.styleFrom(
@@ -211,6 +173,22 @@ class _HomeContentState extends State<HomeContent> {
           ),
         ),
       ],
+    );
+  }
+
+  // Open AddToCart dialog.
+  void _addToCart(Map<String, dynamic> product) {
+    showDialog(
+      context: context,
+      builder: (context) => AddToCartDialog(product: product),
+    );
+  }
+
+  // Open BuyNow dialog.
+  void _buyNow(Map<String, dynamic> product) {
+    showDialog(
+      context: context,
+      builder: (context) => BuyNowDialog(product: product),
     );
   }
 
